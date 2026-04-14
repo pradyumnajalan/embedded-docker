@@ -17,8 +17,8 @@ jobs:
       - name: buld docker image
         run: docker build -t embedded-tooclhain:v1 .
       - name: build firmware
-        run: docker-compose run --rm build
+        run: docker compose run --rm build
       - name: Run static analysis
-        run: docker-compose run --rm analyze
+        run: docker compose run --rm analyze
       - name: clean build artifacts
-        run: docker-compose run --rm clean
+        run: docker compose run --rm clean
