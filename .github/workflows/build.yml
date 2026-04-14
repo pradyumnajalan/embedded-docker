@@ -15,7 +15,7 @@ jobs:
       - name: download code
         uses: actions/checkout@v3
       - name: buld docker image
-        run: docker build -t embedded-tooclhain:v1 .
+        run: docker compose build
       - name: build firmware
         run: docker compose run --rm build
       - name: Run static analysis

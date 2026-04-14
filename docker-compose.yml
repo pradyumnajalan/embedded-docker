@@ -1,4 +1,5 @@
 x-common: &common-config
+  build: .
   image: embedded-toolchain:v1
   volumes:
     - ./firmware-test:/workspace
