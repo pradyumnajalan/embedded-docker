@@ -1,0 +1,23 @@
+name: Firmware CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main  
+jobs:
+  build-and-analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download code
+        uses: actions/checkout@v3
+      - name: buld docker image
+        run: docker build it embedded-tooclhain:v1 .
+      - name: build firmware
+        run: docker-compose run --rm build
+      - name: Run static analysis
+        run: docker-compose run --rm analyze
+      - name: clean build artifacts
+        run: docker-compose run --rm clean
