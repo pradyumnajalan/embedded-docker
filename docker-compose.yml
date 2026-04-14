@@ -1,0 +1,23 @@
+x-common: &common-config
+  image: embedded-toolchain:v1
+  volumes:
+    - ./firmware-test:/workspace
+  working_dir: /workspace
+services:
+  build:
+    <<: *common-config
+    command: ["make"]
+  
+  clean:
+    <<: *common-config
+    command: ["make", "clean"]
+
+  shell:
+    <<: *common-config
+    stdin_open: true
+    tty: true
+    command: ["/bin/bash"]
+
+  analyze:
+    <<: *common-config
+    command: ["cppcheck", "--enable=all", "--error-exitcode=1", "main.c"]
